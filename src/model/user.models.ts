@@ -1,23 +1,7 @@
 import mongoose, {Schema, Document} from "mongoose";
 import { Post, PostSchema } from "./post.models";
+import { Group, GroupSchema } from "./group.models";
 
-export interface Group extends Document {
-    name: string,
-    description: string,
-}
-
-const GroupSchema: Schema<Group> = new Schema({
-    name: {
-        type: String,
-        required: [true, "GroupName is required"],
-        trim: true,
-        unique: true,
-        lowercase: true,
-    },
-    description: {
-        type: String,
-    }
-})
 
 export interface User extends Document {
     username: string,
@@ -73,3 +57,7 @@ const UserSchema: Schema<User> = new Schema({
     groups: [GroupSchema],
 
 })
+
+const UserModel = (mongoose.models.User as mongoose.Model<User>) || (mongoose.model<User>("User", UserSchema))
+
+export default UserModel
