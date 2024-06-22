@@ -8,9 +8,6 @@ export interface User extends Document {
     password: string,
     collegeName: string,
     logo: string,
-    verifyCode: string,
-    verifyCodeExpiry: Date,
-    isVerified: boolean,
     posts: Post[],
     groups: Group[],
 }
@@ -40,18 +37,6 @@ const UserSchema: Schema<User> = new Schema({
         type: String,
         default: "https://www.gravatar.com/avatar",
 
-    },
-    verifyCode: {
-        type: String,
-        required: [true, "VerifyCode is required"],
-    },
-    verifyCodeExpiry: {
-        type: Date,
-        required: [true, "VerifyCodeExpiry is required"],
-    },
-    isVerified: {
-        type: Boolean,
-        default: false,
     },
     posts: [PostSchema],
     groups: [GroupSchema],
