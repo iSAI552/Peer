@@ -7,6 +7,8 @@ export interface Post extends Document {
     groupIds: [Schema.Types.ObjectId],
     likes: number,
     tags: [string],
+    instituteOnly: boolean,
+    mediaURL: string,
 }
 
 export const PostSchema: Schema<Post> = new Schema({
@@ -32,7 +34,14 @@ export const PostSchema: Schema<Post> = new Schema({
         type: Number,
         default: 0,
     },
+    instituteOnly:{
+        type: Boolean,
+        default: false,
+    },
     tags: [String],
+    mediaURL: {
+        type: String, // Cloudinary URL
+    }
 
 }, {timestamps: true})
 

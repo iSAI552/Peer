@@ -1,6 +1,5 @@
 import mongoose, {Schema, Document} from "mongoose";
 import { Post, PostSchema } from "./post.models";
-import { Group, GroupSchema } from "./group.models";
 
 
 export interface User extends Document {
@@ -9,7 +8,9 @@ export interface User extends Document {
     collegeName: string,
     logo: string,
     posts: Post[],
-    groups: Group[],
+    groupsFollowing: [Schema.Types.ObjectId],
+    likedPosts: [Schema.Types.ObjectId],
+    likedComments: [Schema.Types.ObjectId],
 }
 
 const UserSchema: Schema<User> = new Schema({
@@ -39,7 +40,18 @@ const UserSchema: Schema<User> = new Schema({
 
     },
     posts: [PostSchema],
-    groups: [GroupSchema],
+    groupsFollowing: [{
+        type: Schema.Types.ObjectId,
+        ref: "Group"
+    }],
+    likedPosts: [{
+        type: Schema.Types.ObjectId,
+        ref: "Post",
+    }],
+    likedComments: [{
+        type: Schema.Types.ObjectId,
+        ref: "Comment",
+    }],
 
 })
 
