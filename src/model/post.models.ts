@@ -5,8 +5,7 @@ export interface Post extends Document {
     content: string,
     userId: Schema.Types.ObjectId,
     groupIds: [Schema.Types.ObjectId],
-    upvotes: number,
-    downvotes: number,
+    likes: number,
     tags: [string],
 }
 
@@ -29,13 +28,9 @@ export const PostSchema: Schema<Post> = new Schema({
         ref: "Group",
         required: true
     }],
-    upvotes: {
+    likes: {
         type: Number,
-        default: 0
-    },
-    downvotes: {
-        type: Number,
-        default: 0
+        default: 0,
     },
     tags: [String],
 
