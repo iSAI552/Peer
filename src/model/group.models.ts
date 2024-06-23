@@ -29,7 +29,7 @@ export const GroupSchema: Schema<Group> = new Schema({
     },
     groupCategory: {
         type: String,
-        enum: ["General Topics", "Fields", "Job Groups", "Degree"],
+        enum: ["General Topics", "Fields", "Job Groups", "Degree", "Institute"],
         default: "General Topics",
     }
 
