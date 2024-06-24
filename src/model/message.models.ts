@@ -4,7 +4,7 @@ export interface Message extends Document {
     senderId: Schema.Types.ObjectId,
     receiverId: Schema.Types.ObjectId,
     content: string,
-    media: string,
+    mediaURL: string,
 }
 
 const MessageSchema: Schema<Message> = new Schema({
@@ -21,7 +21,7 @@ const MessageSchema: Schema<Message> = new Schema({
     content: {
         type: String,
     },
-    media: {
+    mediaURL: {
         type: String, // Cloudinary Url
     }
 }, {timestamps: true})
