@@ -1,10 +1,11 @@
-import { ApiErrorInterface } from "@/types/apiResponse.types"
+import { ApiErrorInterface, ApiResponseInterface } from "@/types/apiResponse.types"
 
-class ApiError extends Error implements ApiErrorInterface {
+class ApiError extends Error implements ApiResponseInterface, ApiErrorInterface {
     statusCode: number
     errors: any
     data: any
     success: boolean
+    message: string
     constructor(
         statusCode: number,
         message = "Something went wrong",

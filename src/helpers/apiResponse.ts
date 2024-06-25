@@ -6,7 +6,7 @@ class ApiResponse implements ApiResponseInterface{
     message: string;
     data?: Data | undefined;
 
-   constructor(statusCode: number, data: Data, message = "Success") {
+   constructor(statusCode: number, message = "Success", data?: Data) {
       this.statusCode = statusCode;
       this.success = statusCode < 400;
       this.message = message;
