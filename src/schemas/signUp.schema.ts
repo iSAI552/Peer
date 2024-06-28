@@ -1,4 +1,5 @@
 import {z} from "zod";
+import { verifyCodeSchema } from "./verifyCode.schema";
 
 export const usernameValidation = z
 .string()
@@ -11,7 +12,9 @@ export const signUpSchema = z.object({
     password: z
     .string()
     .min(6, { message: "password must be atleast 6 characters" })
-    .max(20, { message: "password length should be less than 20 characters" })
+    .max(20, { message: "password length should be less than 20 characters" }),
+    email: z.string(),
+    otp: verifyCodeSchema
 });
 
 export const emailValidation = z.string().email({message: "Invalid Email address"});
