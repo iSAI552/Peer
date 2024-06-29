@@ -55,6 +55,10 @@ export async function POST(request: Request) {
         logo,
     })
 
+    if(!newUser){
+        return Response.json(new ApiResponse(500, "Error while creating new User document in the datatbase"), {status: 500})
+    }
+
     return Response.json(new ApiResponse(200, "User registered Successfully"), {status: 200})
 
   } catch (error: any) {
