@@ -3,7 +3,7 @@ import { Comment } from "@/model/comment.models";
 import { Message } from "@/model/message.models";
 
 export interface Data {
-    posts?: Array<Post>,
+    posts?: [Post],
     comments?: Array<Comment>,
     messages?: Array<Message>,
     data?: any,
@@ -13,7 +13,7 @@ export interface ApiResponseInterface {
     statusCode: number,
     success: boolean,
     message: string,
-    data?: Data,
+    data?: any,
 }
 
 export interface ApiErrorInterface {

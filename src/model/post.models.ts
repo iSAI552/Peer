@@ -4,7 +4,7 @@ export interface Post extends Document {
     title: string,
     content: string,
     userId: Schema.Types.ObjectId,
-    groupIds: [Schema.Types.ObjectId],
+    groupNames: [string],
     likes: number,
     tags: [string],
     instituteOnly: boolean,
@@ -25,9 +25,8 @@ export const PostSchema: Schema<Post> = new Schema({
         ref: "User",
         required: true
     },
-    groupIds: [{
-        type: Schema.Types.ObjectId,
-        ref: "Group",
+    groupNames: [{
+        type: String,
         required: true
     }],
     likes: {

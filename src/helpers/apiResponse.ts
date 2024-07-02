@@ -4,9 +4,9 @@ class ApiResponse implements ApiResponseInterface{
     statusCode: number;
     success: boolean;
     message: string;
-    data?: Data | undefined;
+    data?: any;
 
-   constructor(statusCode: number, message = "Success", data?: Data) {
+   constructor(statusCode: number, message = "Success", data?: any) {
       this.statusCode = statusCode;
       this.success = statusCode < 400;
       this.message = message;
