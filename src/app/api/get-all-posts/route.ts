@@ -3,9 +3,16 @@ import dbConnect from "@/lib/dbConnect";
 import ApiResponse from "@/helpers/apiResponse";
 import PostModel, { Post } from "@/model/post.models";
 import { ApiError } from "@/helpers/apiError";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]/options";
 
 export async function GET(request:Request) {
     await dbConnect();
+
+    const session = await getServerSession(authOptions)
+    if(!session || !session.user){
+        return Response.json(new ApiResponse(401, "Not Authenticated"), {status: 401});
+    }
 
     try {
         
@@ -20,7 +27,7 @@ export async function GET(request:Request) {
             return Response.json(new ApiResponse(400, "Invalid group Name"), {status: 400});
         }
 
-        const allPosts = PostModel.find({groupNames: groupName}) // have to find a way to check if this groupname is the array of groupNames
+        const allPosts = PostModel.find({groupNames: [groupName]}) // have to find a way to check if this groupname is the array of groupNames
 
         if(!allPosts){
             return Response.json(new ApiResponse(404, "No posts found"), {status: 404});
