@@ -48,8 +48,8 @@ export async function DELETE(
   } catch (error: any) {
     console.error("Error while deleting the Post", error);
     return Response.json(
-      new ApiError(500, "Error while deleting the Post"),
-      error
+      new ApiError(500, "Error while deleting the Post", error),
+      { status: 500 }
     );
   }
 }
