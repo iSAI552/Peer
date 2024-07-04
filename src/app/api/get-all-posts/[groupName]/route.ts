@@ -4,9 +4,9 @@ import ApiResponse from "@/helpers/apiResponse";
 import PostModel, { Post } from "@/model/post.models";
 import { ApiError } from "@/helpers/apiError";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../auth/[...nextauth]/options";
+import { authOptions } from "../../auth/[...nextauth]/options";
 
-export async function GET(request:Request) {
+export async function GET(request:Request, { params }: {params : { groupName: string }}) {
     await dbConnect();
 
     const session = await getServerSession(authOptions)
@@ -15,13 +15,8 @@ export async function GET(request:Request) {
     }
 
     try {
-        
-        const { searchParams } = new URL(request.url)
-        const queryParams = {
-            groupName: searchParams.get("groupName"),
-        };
 
-        const {groupName} = queryParams
+        const groupName = params.groupName
 
         if(!groupName) {
             return Response.json(new ApiResponse(400, "Invalid group Name"), {status: 400});
